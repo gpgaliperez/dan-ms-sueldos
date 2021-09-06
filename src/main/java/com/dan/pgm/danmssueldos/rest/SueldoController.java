@@ -23,4 +23,5 @@ public class SueldoController {
         return new ResponseEntity<>(sueldoService.liquidarSueldoByEmpleadoId(empleadoID), HttpStatus.OK);
     }
 
+
 }

@@ -13,6 +13,8 @@ public class Empleado {
     private Integer id;
     private String name;
 
+
+
     public Empleado(Integer id, String name) {
         this.id = id;
         this.name = name;
@@ -20,6 +22,7 @@ public class Empleado {
 
     public Empleado() {
     }
+
 
     public Integer getId() {
         return id;
@@ -36,4 +39,6 @@ public class Empleado {
     public void setName(String name) {
         this.name = name;
     }
+
+    
 }

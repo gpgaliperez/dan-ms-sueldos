@@ -1,19 +1,21 @@
 package com.dan.pgm.danmssueldos.dto;
 
 import java.time.Instant;
+import java.time.LocalDate;
+import java.util.Date;
 
 public class VentaDTO {
 
     private EmpleadoDTO empleadoDTO;
     private Double montoTotal;
-    private Instant fechaVenta;
+    private LocalDate fechaVenta;
     private String estadoPedido;
     private Integer idObra;
 
     public VentaDTO() {
     }
 
-    public VentaDTO(EmpleadoDTO empleadoDTO, Double montoTotal, Instant fechaVenta, String estadoPedido, Integer idObra) {
+    public VentaDTO(EmpleadoDTO empleadoDTO, Double montoTotal, LocalDate fechaVenta, String estadoPedido, Integer idObra) {
         this.empleadoDTO = empleadoDTO;
         this.montoTotal = montoTotal;
         this.fechaVenta = fechaVenta;
@@ -37,11 +39,11 @@ public class VentaDTO {
         this.montoTotal = montoTotal;
     }
 
-    public Instant getFechaVenta() {
+    public LocalDate getFechaVenta() {
         return fechaVenta;
     }
 
-    public void setFechaVenta(Instant fechaVenta) {
+    public void setFechaVenta(LocalDate fechaVenta) {
         this.fechaVenta = fechaVenta;
     }
 

@@ -24,9 +24,14 @@ public class VentaController {
         return new ResponseEntity<>(ventaService.obtenerVentas(), HttpStatus.OK);
     }
 
-    @GetMapping("/ventasByEmpleadoId/{empleadoId}")
+    @GetMapping("/ventasByEmpleado/{empleadoId}")
+    public ResponseEntity<?> obtenerByEmpleado(@PathVariable Integer empleadoId){
+        return new ResponseEntity<>(ventaService.obtenerVentasByEmpleado(empleadoId), HttpStatus.OK);
+    }
+
+    @GetMapping("/empleadoDelMes")
     public ResponseEntity<?> obtenerByIdEmpleado(@PathVariable Integer empleadoId){
-        return new ResponseEntity<>(ventaService.obtenerByIdEmpleado(empleadoId), HttpStatus.OK);
+        return new ResponseEntity<>(ventaService.mejorVendedorDelMes(), HttpStatus.OK);
     }
 
 

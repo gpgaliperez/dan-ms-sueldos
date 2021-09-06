@@ -2,6 +2,8 @@ package com.dan.pgm.danmssueldos.model;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 public class Venta {
@@ -10,13 +12,13 @@ public class Venta {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private Double montoTotal;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "EMPLEADO_ID")
-    private Empleado empleado;
-    private Instant fechaVenta;
+    /*@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "EMPLEADO_ID")*/
+    private Integer empleado;
+    private LocalDate fechaVenta;
 
 
-    public Venta(Integer id, Double montoTotal, Empleado empleado, Instant fechaVenta) {
+    public Venta(Integer id, Double montoTotal, Integer empleado, LocalDate fechaVenta) {
         this.id = id;
         this.montoTotal = montoTotal;
         this.empleado = empleado;
@@ -43,19 +45,19 @@ public class Venta {
         this.montoTotal = montoTotal;
     }
 
-    public Empleado getEmpleado() {
+    public Integer getEmpleado() {
         return empleado;
     }
 
-    public void setEmpleado(Empleado empleado) {
+    public void setEmpleado(Integer empleado) {
         this.empleado = empleado;
     }
 
-    public Instant getFechaVenta() {
+    public LocalDate getFechaVenta() {
         return fechaVenta;
     }
 
-    public void setFechaVenta(Instant fechaVenta) {
+    public void setFechaVenta(LocalDate fechaVenta) {
         this.fechaVenta = fechaVenta;
     }
 }
