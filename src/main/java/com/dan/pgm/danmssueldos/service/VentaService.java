@@ -14,8 +14,6 @@ public interface VentaService {
     public List<Venta> obtenerVentasByEmpleado(Integer empleadoId);
     public List<Venta> obtenerVentasDelMes();
     public Long cantVentasDelMesByEmpleado(Integer empleadoId);
-    public EmpleadoDTO getEmpleadoById(Integer empleadoId);
-    public List<EmpleadoDTO> getAllEmpleados();
     EmpleadoDTO mejorVendedorDelMes();
 
 }

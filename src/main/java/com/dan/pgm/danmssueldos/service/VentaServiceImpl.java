@@ -23,10 +23,8 @@ import java.util.stream.Collectors;
 @Service
 public class VentaServiceImpl implements VentaService {
 
-    private static final String REST_API_EMPLEADOS_URL = "http://localhost:9000/api/empleado";
-
     @Autowired
-    CircuitBreakerFactory circuitBreakerFactory;
+    EmpleadoService empleadoService;
 
     @Autowired
     VentaRepository ventaRepository;
@@ -34,7 +32,7 @@ public class VentaServiceImpl implements VentaService {
     @Override
     public VentaDTO crearVenta(PedidoDTO pedidoDTO, Integer empleadoId) {
 
-        EmpleadoDTO empleadoObtenido = this.getEmpleadoById(empleadoId);
+        EmpleadoDTO empleadoObtenido = empleadoService.getEmpleadoById(empleadoId);
 
         if(empleadoObtenido == null){
             throw new RuntimeException("No se encontre un empleado con el id: " + empleadoId);
@@ -83,7 +81,7 @@ public class VentaServiceImpl implements VentaService {
     }
 
     public EmpleadoDTO mejorVendedorDelMes(){
-        List<EmpleadoDTO> empleados = this.getAllEmpleados();
+        List<EmpleadoDTO> empleados = empleadoService.getAllEmpleados();
         Long maxVentas = 0L;
         EmpleadoDTO mejorVendedor = new EmpleadoDTO();
 
@@ -100,44 +98,5 @@ public class VentaServiceImpl implements VentaService {
 
 
 
-    public EmpleadoDTO getEmpleadoById(Integer empleadoId){
-        String url = REST_API_EMPLEADOS_URL + "/" + empleadoId;
-        WebClient client = WebClient.create(url);
-        CircuitBreaker circuitBreaker = circuitBreakerFactory.create("circuitbreaker");
 
-        return circuitBreaker.run(() -> {
-            try{
-                EmpleadoDTO empleadoRta= client.get()
-                        .uri(url).accept(MediaType.APPLICATION_JSON)
-                        .retrieve()
-                        .bodyToMono(EmpleadoDTO.class)
-                        .block();
-                return empleadoRta;
-
-            } catch (Exception e){
-                return null;
-            }
-        }, throwable -> null);
-    }
-
-    public List<EmpleadoDTO> getAllEmpleados(){
-        String url = REST_API_EMPLEADOS_URL;
-        WebClient client = WebClient.create(url);
-        CircuitBreaker circuitBreaker = circuitBreakerFactory.create("circuitbreaker");
-
-        return circuitBreaker.run(() -> {
-            try{
-                List<EmpleadoDTO> empleadoRta= client.get()
-                        .uri(url).accept(MediaType.APPLICATION_JSON)
-                        .retrieve()
-                        .bodyToFlux(EmpleadoDTO.class)
-                        .collectList()
-                        .block();
-                return empleadoRta;
-
-            } catch (Exception e){
-                return null;
-            }
-        }, throwable -> null);
-    }
 }

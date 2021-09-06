@@ -24,11 +24,14 @@ public class SueldoServiceImpl implements SueldoService {
     @Autowired
     VentaService ventaService;
 
+    @Autowired
+    EmpleadoService empleadoService;
+
 
     @Override
     public ReciboSueldo liquidarSueldoByEmpleadoId(Integer empleadoId) {
 
-        EmpleadoDTO empleadoDTOObtenido = ventaService.getEmpleadoById(empleadoId);
+        EmpleadoDTO empleadoDTOObtenido = empleadoService.getEmpleadoById(empleadoId);
 
         if(empleadoDTOObtenido == null){
             throw new RuntimeException("No se encontre un empleado con el id: " + empleadoId);
@@ -52,7 +55,7 @@ public class SueldoServiceImpl implements SueldoService {
 
 
     public List<ReciboSueldo> liquidarSueldosEmpleados(){
-        List<EmpleadoDTO> empleadosAliquidar = ventaService.getAllEmpleados();
+        List<EmpleadoDTO> empleadosAliquidar = empleadoService.getAllEmpleados();
         List<ReciboSueldo> recibos = new ArrayList<>();
 
         for(EmpleadoDTO e: empleadosAliquidar){
