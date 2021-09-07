@@ -10,5 +10,6 @@ import java.util.List;
 public interface VentaRepository extends JpaRepository<Venta, Integer> {
 
     List<Venta> findAll();
+    List<Venta> findAllByEmpleado(Integer empleado);
     List<Venta> findAllByFechaVentaAfter(LocalDate fechaInicioMes);
 }

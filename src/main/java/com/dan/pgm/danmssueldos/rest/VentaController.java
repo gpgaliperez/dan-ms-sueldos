@@ -14,25 +14,27 @@ public class VentaController {
     @Autowired
     VentaService ventaService;
 
-    @PostMapping("/crearVenta/{empleadoId")
+    @PostMapping("/crearVenta/{empleadoId}")
     public ResponseEntity<?> crearVenta(@RequestBody PedidoDTO pedidoDTO, @PathVariable Integer empleadoId){
+
         return new ResponseEntity<>(ventaService.crearVenta(pedidoDTO, empleadoId), HttpStatus.OK);
     }
 
     @GetMapping
     public ResponseEntity<?> obtenerTodas(){
+
         return new ResponseEntity<>(ventaService.obtenerVentas(), HttpStatus.OK);
     }
 
     @GetMapping("/ventasByEmpleado/{empleadoId}")
     public ResponseEntity<?> obtenerByEmpleado(@PathVariable Integer empleadoId){
+
         return new ResponseEntity<>(ventaService.obtenerVentasByEmpleado(empleadoId), HttpStatus.OK);
     }
 
     @GetMapping("/empleadoDelMes")
-    public ResponseEntity<?> obtenerByIdEmpleado(@PathVariable Integer empleadoId){
+    public ResponseEntity<?> obtenerByIdEmpleado(){
+
         return new ResponseEntity<>(ventaService.mejorVendedorDelMes(), HttpStatus.OK);
     }
-
-
 }

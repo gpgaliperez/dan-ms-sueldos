@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
+
 @Service
 public class EmpleadoServiceImpl implements EmpleadoService{
 
@@ -29,8 +30,8 @@ public class EmpleadoServiceImpl implements EmpleadoService{
                         .retrieve()
                         .bodyToMono(EmpleadoDTO.class)
                         .block();
-                return empleadoRta;
 
+                return empleadoRta;
             } catch (Exception e){
                 return null;
             }
@@ -50,8 +51,8 @@ public class EmpleadoServiceImpl implements EmpleadoService{
                         .bodyToFlux(EmpleadoDTO.class)
                         .collectList()
                         .block();
-                return empleadoRta;
 
+                return empleadoRta;
             } catch (Exception e){
                 return null;
             }

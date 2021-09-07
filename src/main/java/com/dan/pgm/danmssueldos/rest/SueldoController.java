@@ -18,13 +18,13 @@ public class SueldoController {
     SueldoService sueldoService;
 
     @GetMapping("/liquidarSueldoByEmpleadoId/{empleadoId}")
-    public ResponseEntity<?> liquidarSueldoByEmpleadoId(@PathVariable Integer empleadoID){
+    public ResponseEntity<?> liquidarSueldoByEmpleadoId(@PathVariable Integer empleadoId){
 
-        return new ResponseEntity<>(sueldoService.liquidarSueldoByEmpleadoId(empleadoID), HttpStatus.OK);
+        return new ResponseEntity<>(sueldoService.liquidarSueldoByEmpleadoId(empleadoId), HttpStatus.OK);
     }
 
-    @GetMapping("/liquidarSueldoByEmpleados/{empleadoId}")
-    public ResponseEntity<?> liquidarSueldoByEmpleados(@PathVariable Integer empleadoID){
+    @GetMapping("/liquidarSueldoEmpleados")
+    public ResponseEntity<?> liquidarSueldosAllEmpleados(){
 
         return new ResponseEntity<>(sueldoService.liquidarSueldosEmpleados(), HttpStatus.OK);
     }

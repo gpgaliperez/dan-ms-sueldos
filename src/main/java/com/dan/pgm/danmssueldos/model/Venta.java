@@ -12,8 +12,6 @@ public class Venta {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private Double montoTotal;
-    /*@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "EMPLEADO_ID")*/
     private Integer empleado;
     private LocalDate fechaVenta;
 
@@ -27,7 +25,6 @@ public class Venta {
 
     public Venta() {
     }
-
 
     public Integer getId() {
         return id;
