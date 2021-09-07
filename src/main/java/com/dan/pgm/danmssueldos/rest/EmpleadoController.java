@@ -1,7 +1,5 @@
 package com.dan.pgm.danmssueldos.rest;
-import com.dan.pgm.danmssueldos.model.Empleado;
 import com.dan.pgm.danmssueldos.service.EmpleadoService;
-import com.dan.pgm.danmssueldos.service.SueldoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +16,13 @@ public class EmpleadoController {
     EmpleadoService empleadoService;
 
     @GetMapping("/getEmpleadoById/{empleadoId}")
-    public ResponseEntity<?> getEmpleadoById(@PathVariable Integer empleadoID){
+    public ResponseEntity<?> getEmpleadoById(@PathVariable Integer empleadoId){
 
-        return new ResponseEntity<>(empleadoService.getEmpleadoById(empleadoID), HttpStatus.OK);
+        return new ResponseEntity<>(empleadoService.getEmpleadoById(empleadoId), HttpStatus.OK);
     }
 
     @GetMapping()
-    public ResponseEntity<?> liquidarSueldoByEmpleados(@PathVariable Integer empleadoID){
+    public ResponseEntity<?> liquidarSueldoByEmpleados(){
 
         return new ResponseEntity<>(empleadoService.getAllEmpleados(), HttpStatus.OK);
     }
